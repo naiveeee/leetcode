@@ -8,8 +8,10 @@ const res = []
 testcase.sort((a, b) => a - b)
 const visited = Array.from({ length: testcase.length }).map(() => false)
 const dfs = (idx: number, array: number[]) => {
+  // idx左侧为已经准备好的部分排列，右侧为待加入的排列
   if(idx === array.length) res.push([...array])
   for(let i = idx; i < array.length; i++) {
+    // 重复元素只考虑一次
     if(array[i] === array[i + 1]) continue
     swap(array, i, idx)
     dfs(idx + 1, array)
